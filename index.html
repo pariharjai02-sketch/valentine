@@ -22,18 +22,19 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
             width: 350px;
-            z-index: 1;
+            position: relative;
         }
         img {
-            width: 250px; /* Made slightly larger */
+            width: 250px;
             border-radius: 15px;
         }
         .buttons {
             margin-top: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px;
-            height: 50px;
+            height: 50px; /* Space for buttons */
         }
         button {
             padding: 10px 25px;
@@ -46,27 +47,18 @@
         #yesBtn {
             background-color: #ff69b4;
             color: white;
-            z-index: 2;
         }
         #noBtn {
             background-color: #bdc3c7;
             color: white;
-            position: absolute;
-        }
-        /* Hidden Preloader */
-        #preloader {
-            display: none;
+            position: relative; /* Starts visible in the middle */
         }
     </style>
 </head>
 <body>
 
-    <div id="preloader">
-        <img src="https://media.tenor.com/7S_EwB8v2SgAAAAj/panda-love.gif">
-    </div>
-
     <div class="container" id="mainCard">
-        <img id="pandaGif" src="https://media.tenor.com/9t_v-R6Vf6IAAAAj/panda-love.gif" alt="Panda Love">
+        <img id="pandaGif" src="panda1.gif" alt="Cute Panda">
         <h1>Will you be my Valentine?</h1>
         <div class="buttons">
             <button id="yesBtn">Yes</button>
@@ -79,9 +71,14 @@
         const yesBtn = document.getElementById('yesBtn');
         const card = document.getElementById('mainCard');
 
+        // Logic to make the button run away
         noBtn.addEventListener('mouseover', () => {
+            // Switch to absolute positioning only AFTER the first hover
+            noBtn.style.position = 'fixed'; 
+            
             const maxX = window.innerWidth - noBtn.offsetWidth;
             const maxY = window.innerHeight - noBtn.offsetHeight;
+
             const randomX = Math.floor(Math.random() * maxX);
             const randomY = Math.floor(Math.random() * maxY);
 
@@ -89,10 +86,10 @@
             noBtn.style.top = randomY + 'px';
         });
 
+        // Logic for "Yes" click
         yesBtn.addEventListener('click', () => {
-            // Because it's preloaded, it will swap instantly!
             card.innerHTML = `
-                <img src="https://media.tenor.com/7S_EwB8v2SgAAAAj/panda-love.gif" alt="Panda Love You">
+                <img src="panda2.gif" alt="Love Panda">
                 <h1>I Love You! ❤️🎉</h1>
             `;
         });
