@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Prevents scrollbars when button moves */
+            overflow: hidden; /* Keeps the screen clean while the button moves */
             font-family: 'Comic Sans MS', cursive, sans-serif;
         }
         .container {
@@ -40,6 +40,7 @@
             border-radius: 10px;
             border: none;
             cursor: pointer;
+            transition: all 0.2s ease; /* Makes the "No" button slide smoothly */
         }
         #yesBtn {
             background-color: #ff69b4;
@@ -48,8 +49,7 @@
         #noBtn {
             background-color: #bdc3c7;
             color: white;
-            transition: all 0.2s ease; /* Makes it slide away smoothly */
-            position: absolute; /* Needed for the "run away" math */
+            position: absolute; /* Allows the button to move anywhere on screen */
         }
     </style>
 </head>
@@ -68,11 +68,9 @@
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
         const card = document.getElementById('mainCard');
-        const gif = document.getElementById('pandaGif');
 
-        // Logic to make the button "run away" from the cursor
+        // This makes the "No" button run away whenever the cursor touches it
         noBtn.addEventListener('mouseover', () => {
-            // Calculate a random position within the visible screen
             const maxX = window.innerWidth - noBtn.offsetWidth;
             const maxY = window.innerHeight - noBtn.offsetHeight;
 
@@ -83,11 +81,12 @@
             noBtn.style.top = randomY + 'px';
         });
 
-        // Logic for clicking "Yes"
+        // This triggers the "I Love You" screen when Yes is clicked
         yesBtn.addEventListener('click', () => {
             card.innerHTML = `
-                <img src="https://media.tenor.com/Ef0_S_C6f84AAAAj/love-panda.gif" alt="Happy Panda">
-                <h1>YAY! ❤️ See you then!</h1>
+                <img src="https://media.tenor.com/7S_EwB8v2SgAAAAj/panda-love.gif" alt="Panda Love You">
+                <h1>I Love You! ❤️🎉</h1>
+                <p>You've made me the happiest person!</p>
             `;
         });
     </script>
