@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Keeps the screen clean while the button moves */
+            overflow: hidden;
             font-family: 'Comic Sans MS', cursive, sans-serif;
         }
         .container {
@@ -25,7 +25,7 @@
             z-index: 1;
         }
         img {
-            width: 200px;
+            width: 250px; /* Made slightly larger */
             border-radius: 15px;
         }
         .buttons {
@@ -33,6 +33,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            height: 50px;
         }
         button {
             padding: 10px 25px;
@@ -40,20 +41,29 @@
             border-radius: 10px;
             border: none;
             cursor: pointer;
-            transition: all 0.2s ease; /* Makes the "No" button slide smoothly */
+            transition: all 0.2s ease;
         }
         #yesBtn {
             background-color: #ff69b4;
             color: white;
+            z-index: 2;
         }
         #noBtn {
             background-color: #bdc3c7;
             color: white;
-            position: absolute; /* Allows the button to move anywhere on screen */
+            position: absolute;
+        }
+        /* Hidden Preloader */
+        #preloader {
+            display: none;
         }
     </style>
 </head>
 <body>
+
+    <div id="preloader">
+        <img src="https://media.tenor.com/7S_EwB8v2SgAAAAj/panda-love.gif">
+    </div>
 
     <div class="container" id="mainCard">
         <img id="pandaGif" src="https://media.tenor.com/9t_v-R6Vf6IAAAAj/panda-love.gif" alt="Panda Love">
@@ -69,11 +79,9 @@
         const yesBtn = document.getElementById('yesBtn');
         const card = document.getElementById('mainCard');
 
-        // This makes the "No" button run away whenever the cursor touches it
         noBtn.addEventListener('mouseover', () => {
             const maxX = window.innerWidth - noBtn.offsetWidth;
             const maxY = window.innerHeight - noBtn.offsetHeight;
-
             const randomX = Math.floor(Math.random() * maxX);
             const randomY = Math.floor(Math.random() * maxY);
 
@@ -81,12 +89,11 @@
             noBtn.style.top = randomY + 'px';
         });
 
-        // This triggers the "I Love You" screen when Yes is clicked
         yesBtn.addEventListener('click', () => {
+            // Because it's preloaded, it will swap instantly!
             card.innerHTML = `
                 <img src="https://media.tenor.com/7S_EwB8v2SgAAAAj/panda-love.gif" alt="Panda Love You">
                 <h1>I Love You! ❤️🎉</h1>
-                <p>You've made me the happiest person!</p>
             `;
         });
     </script>
