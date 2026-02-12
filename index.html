@@ -5,46 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <style>
-        /* CSS: Making it look cute */
         body {
-            background-color: #ffe4e1; /* Soft pink */
+            background-color: #ffe4e1;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
         }
         .container {
             background: white;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
         }
         .buttons {
-            margin-top: 20px;
+            margin-top: 30px;
             position: relative;
+            height: 60px; /* Gives the No button space to move */
         }
         button {
-            padding: 10px 25px;
+            padding: 12px 28px;
             font-size: 1.2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             border: none;
             cursor: pointer;
+            transition: transform 0.2s;
         }
-        #yesBtn { background-color: #ff69b4; color: white; }
-        #noBtn { 
-            background-color: #ccc; 
-            position: absolute; /* Allows it to move around */
+        #yesBtn {
+            background-color: #ff69b4;
+            color: white;
+            margin-right: 10px;
         }
-        img { width: 150px; border-radius: 10px; }
+        #noBtn {
+            background-color: #bdc3c7;
+            color: white;
+            position: absolute;
+        }
+        img {
+            width: 200px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container" id="mainCard">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26hpKUNPPrjI23H7W/giphy.gif" alt="Cute Cat">
-        <h1 id="question">Will you be my Valentine?</h1>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/EatwJZRUIv41G/giphy.gif" alt="Cute Panda Heart">
+        <h1>Will you be my Valentine?</h1>
         <div class="buttons">
             <button id="yesBtn">Yes</button>
             <button id="noBtn">No</button>
@@ -56,22 +69,17 @@
         const yesBtn = document.getElementById('yesBtn');
         const card = document.getElementById('mainCard');
 
-        // Logic to make the "No" button run away
+        // The "Runaway" No Button Logic
         noBtn.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
             const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
             
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         });
 
-        // Logic for when they click "Yes"
+        // The "Yes" Celebration Logic
         yesBtn.addEventListener('click', () => {
             card.innerHTML = `
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1Z3p1JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l41lH4ADRtAYnGsLe/giphy.gif">
-                <h1>YAY! See you on the 14th! 🎉</h1>
-            `;
-        });
-    </script>
-</body>
-</html>
+                <img src="
